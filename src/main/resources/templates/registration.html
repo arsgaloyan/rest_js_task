@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+  <form th:method="POST" th:action="@{/registration}" th:object="${user}">
+    <label for="username">Введите имя пользователя:</label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <div style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</div>
+    <br/>
+    <br/>
+
+    <label for="name">Введите имя:</label>
+      <input type="text" th:field="*{name}" id="name"/>
+      <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+      <br/>
+      <br/>
+
+      <label for="surname">Введите фамилию:</label>
+      <input type="text" th:field="*{surname}" id="surname"/>
+      <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Name Error</div>
+      <br/>
+      <br/>
+
+      <label for="email">Введите email:</label>
+      <input type="text" th:field="*{email}" id="email"/>
+      <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+      <br/>
+      <br/>
+
+      <label for="password">Введите пароль:</label>
+      <input type="password" th:field="*{password}" id="password"/>
+      <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{email}">Email Error</div>
+      <br/>
+      <input type="submit" value="Sign Up!">
+
+    <p>
+      <label>Select role:
+        <input type="checkbox" name="roles"
+               th:each="role : ${roles}"
+               th:text="${role.getRole()}"
+               th:value="${role.getId()}"
+               th:field="*{roles}"
+        />
+      </label>
+    </p>
+<!--    <label for="roles">Choose a role:</label>-->
+
+<!--    <select name="role" id="roles">-->
+<!--      <option th:value="user">User</option>-->
+<!--      <option th:value="admin">Admin</option>-->
+
+<!--    </select>-->
+
+  </form>
+
+</body>
+</html>
